@@ -26,7 +26,7 @@
                         {{\Illuminate\Support\Str::of($case->value)->headline()}}
                     </button>
                 @endforeach
-                <button wire:click="editTask({{$task}})" class="flex mt-2 py-2 px-4 bg-green-500 hover:bg-green-300 text-white rounded-md">EDIT</button>
+{{--                <button wire:click="editTask({{$task}})" class="flex mt-2 py-2 px-4 bg-green-500 hover:bg-green-300 text-white rounded-md">EDIT</button>--}}
             </div>
         @endforeach
     </div>
