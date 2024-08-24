@@ -16,8 +16,8 @@ test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
     $component = Volt::test('pages.auth.login')
-        ->set('form.email', $user->email)
-        ->set('form.password', 'password');
+        ->set('privateComponent.email', $user->email)
+        ->set('privateComponent.password', 'password');
 
     $component->call('login');
 
@@ -32,8 +32,8 @@ test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
     $component = Volt::test('pages.auth.login')
-        ->set('form.email', $user->email)
-        ->set('form.password', 'wrong-password');
+        ->set('privateComponent.email', $user->email)
+        ->set('privateComponent.password', 'wrong-password');
 
     $component->call('login');
 

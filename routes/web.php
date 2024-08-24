@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\API\AuthWithSocialite;
+use App\Http\API\GithubAuth;
 use App\Livewire\Task\TaskIndex;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +21,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::view('/', 'welcome');
 
-Route::view('dashboard', 'dashboard')
+Route::view('dashboard', 'cona')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
@@ -31,28 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::get('tasks', TaskIndex::class)->name('tasks-index');
 });
 
-// GIT GUB AUTH
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('github')->redirect();
-})->name('auth.redirect');
 
-Route::get('/auth/callback', function () {
-    $gitHubUser = Socialite::driver('github')->user();
+ //GIT GUB AUTH
+Route::get('/auth/{provider}/redirect', [AuthWithSocialite::class, 'redirect']);
 
-    $user = User::updateOrCreate([
-        'email' => $gitHubUser->email,
-    ], [
-            'name' => $gitHubUser->nickname,
-            'email' => $gitHubUser->email,
-            'remember_token' => $gitHubUser->token,
-            'password' => \Illuminate\Support\Facades\Hash::make('1234567890'),
-        ]
-    );
-
-    Auth::login($user);
-    return redirect('/tasks');
-    // $user->token
-});
-
+Route::get('/auth/{provider}/callback', [AuthWithSocialite::class, 'callback']);
 
 require __DIR__ . '/auth.php';

@@ -12,9 +12,9 @@ test('profile page is displayed', function () {
 
     $response
         ->assertOk()
-        ->assertSeeVolt('profile.update-profile-information-form')
-        ->assertSeeVolt('profile.update-password-form')
-        ->assertSeeVolt('profile.delete-user-form');
+        ->assertSeeVolt('profile.update-profile-information-privateComponent')
+        ->assertSeeVolt('profile.update-password-privateComponent')
+        ->assertSeeVolt('profile.delete-user-privateComponent');
 });
 
 test('profile information can be updated', function () {

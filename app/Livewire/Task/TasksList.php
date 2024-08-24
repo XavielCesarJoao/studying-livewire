@@ -42,9 +42,4 @@ class TasksList extends Component
 
     }
 
-    public function editTask(Task $task)
-    {
-        $this->dispatch('editTask', Tasks: $task);
-    }
-
 }
