@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Image;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -39,6 +40,19 @@ class ImageIndex extends Component
 
         }
         $this->reset();
+    }
+
+    #[Computed(persist: true)]
+    public function images()
+    {
+        return Image::all();
+    }
+
+    public function download($id)
+    {
+        $image = Image::find($id);
+       // return Storage::disk('public')->download($image->path, 'image.png');
+        return response()->download(storage_path('app/public/'. $image->path), 'image.png');
     }
 
 }

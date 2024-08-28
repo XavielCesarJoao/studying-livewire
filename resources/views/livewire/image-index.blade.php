@@ -1,6 +1,14 @@
 <div class="max-w-7xl mx-auto flex">
     <div class="w-7/12">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            @foreach($this->images() as $photo)
+                <div class="flex flex-col justify-center items-center bg-slate-50 rounded-md p-2">
+                    <img class="h-38 w-36 rounded-md" src="{{ asset('storage/' . $photo->path) }}" alt="{{ $photo->name }}">
+                    <div class="mt-2">
+                        <x-primary-button wire:click="download({{$photo->id}})">Download</x-primary-button>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
     <div class="4/12">
