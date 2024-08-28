@@ -23,7 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    protected $with = ['tasks'];
+   //protected $with = ['tasks'];
 
     /**
      * The attributes that should be hidden for serialization.

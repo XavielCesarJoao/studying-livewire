@@ -2,11 +2,13 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class Search extends Component
 {
-    public $search;
+    #[Url(as: 'q')]
+    public $search = '';
     public function render()
     {
         $results = [];
@@ -15,5 +17,11 @@ class Search extends Component
             $results = auth()->user()->tasks()->where('title', 'like', '%'. $this->search .'%')->get();
         }
         return view('livewire.search', compact('results'));
+    }
+
+
+    public function queres()
+    {
+        return 'Porraz';
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\API\AuthWithSocialite;
 use App\Http\API\GithubAuth;
+use App\Livewire\ImageIndex;
 use App\Livewire\Task\TaskIndex;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,7 @@ Route::view('profile', 'profile')
 
 Route::middleware('auth')->group(function () {
     Route::get('tasks', TaskIndex::class)->name('tasks-index');
+    Route::get('/images', ImageIndex::class)->name('image-index');
 });
 
 
