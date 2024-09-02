@@ -1,18 +1,18 @@
 <div class="w-4/12 bg-slate-200 rounded-md mt-2 p-4">
     <div class="mt-6 px-6">
         <div>
-            <h1 class="text-2xl text-center font-semibold">Welcome,  <span
+            <h1 class="text-2xl text-center font-semibold">Welcome, <span
                     class="text-indigo-500">{{ Auth::user()->name }}</span></h1>
             <p class="text-sm text-center">This is your personal tasks manager</p>
 
             </h1>
         </div>
     </div>
-    <div >
+    <div>
         @if (session('success'))
             <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
                  role="alert">
-                <span class="font-medium">Task Created</span>
+                <span class="font-medium">{{ session('success') }}</span>
             </div>
         @endif
         <form wire:submit="save">
@@ -102,7 +102,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-3 flex justify-between">
+            <div class="mb-3 flex justify-items-start">
                 <button type="submit"
                         class="flex py-2 px-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md">Submit
                     <div wire:loading>
@@ -118,9 +118,10 @@
                         </svg>
                         <span class="sr-only">Loading...</span>
                     </div>
-
                 </button>
+
             </div>
         </form>
+        <x-primary-button wire:click="cancel">Cancel</x-primary-button>
     </div>
 </div>

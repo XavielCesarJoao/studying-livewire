@@ -40,6 +40,7 @@ class ImageIndex extends Component
 
         }
         $this->reset();
+        unset($this->images);
     }
 
     #[Computed(persist: true)]

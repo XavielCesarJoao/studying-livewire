@@ -20,8 +20,8 @@ class Search extends Component
     }
 
 
-    public function queres()
+    public function searchPost()
     {
-        return 'Porraz';
+
     }
 }

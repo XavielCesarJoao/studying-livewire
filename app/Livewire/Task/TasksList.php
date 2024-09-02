@@ -39,10 +39,21 @@ class TasksList extends Component
         unset($this->tasksByStatus);
     }
 
+    public function delete(Task $task)
+    {
+        if ($task)
+            $task->delete();
+        else
+            return false;
+
+        unset($this->tasksByStatus);
+        unset($this->tasks);
+    }
+
     #[Computed()]
     public function tasks()
     {
-        return auth()->user()->tasks()->orderBy('id', 'desc')->paginate(2);
+        return auth()->user()->tasks()->orderBy('id', 'desc')->paginate(4);
     }
 
 
